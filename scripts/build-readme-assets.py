@@ -49,8 +49,47 @@ def text_centered(d: ImageDraw.ImageDraw, xy, text, fnt, fill):
     d.text((cx - tw / 2 - bbox[0], cy - th / 2 - bbox[1]), text, font=fnt, fill=fill)
 
 
+# ─── Traduções por idioma ────────────────────────────────────────────────────
+# Cada entrada = (tagline, caption). O sub-tagline "il nono cerchio" é IT
+# para todos (é a assinatura literária do brand, não um texto traduzível).
+HERO_I18N = {
+    "pt": (
+        "Hub de comunicação desktop. Local-first. Zero backend.",
+        "Email · Mensageria · Reuniões · DMs — cada um na sua bolgia.",
+    ),
+    "en": (
+        "Desktop communication hub. Local-first. Zero backend.",
+        "Email · Messaging · Meetings · DMs — each in its own bolgia.",
+    ),
+    "es": (
+        "Centro de comunicación de escritorio. Local-first. Cero backend.",
+        "Email · Mensajería · Reuniones · DMs — cada uno en su bolgia.",
+    ),
+    "it": (
+        "Hub di comunicazione desktop. Local-first. Zero backend.",
+        "Email · Messaggistica · Riunioni · DMs — ognuno nella sua bolgia.",
+    ),
+    "fr": (
+        "Hub de communication desktop. Local-first. Zéro backend.",
+        "Email · Messagerie · Réunions · DMs — chacun dans sa bolgia.",
+    ),
+    "de": (
+        "Desktop-Kommunikations-Hub. Local-first. Null Backend.",
+        "Email · Messaging · Meetings · DMs — jeder in seiner eigenen Bolgia.",
+    ),
+    "ru": (
+        "Десктопный коммуникационный хаб. Local-first. Ноль бэкенда.",
+        "Email · Сообщения · Встречи · DM — каждый в своей bolgia.",
+    ),
+    "la": (
+        "Centrum colloquiorum in mensa. Domi primum. Sine fundamento remoto.",
+        "Epistulae · Nuntiationes · Conventus · DMs — quodque in propria bolgia.",
+    ),
+}
+
+
 # ─── 1. Hero banner (1280×640 — para o topo do README) ──────────────────────
-def render_hero():
+def render_hero(lang: str = "pt", filename: str | None = None):
     W, H = 1280, 640
     img = gradient(W, H, BG_TOP, BG_BOTTOM)
     d = ImageDraw.Draw(img)
@@ -67,51 +106,40 @@ def render_hero():
     title_font = font(SERIF_ITALIC, 168)
     text_centered(d, (W // 2, H // 2 - 70), "Cocito", title_font, TEXT)
 
-    # Tagline em PT
-    tagline_font = font(SF, 28)
-    text_centered(
-        d, (W // 2, H // 2 + 60),
-        "Hub de comunicação desktop. Local-first. Zero backend.",
-        tagline_font, TEXT_DIM,
-    )
+    tagline, caption = HERO_I18N[lang]
 
-    # Sub-tagline IT (assinatura literária)
+    # Tagline (idioma)
+    tagline_font = font(SF, 28)
+    text_centered(d, (W // 2, H // 2 + 60), tagline, tagline_font, TEXT_DIM)
+
+    # Sub-tagline IT (assinatura literária — fixa em todos os idiomas)
     sub_font = font(SERIF_ITALIC, 22)
     text_centered(d, (W // 2, H // 2 + 100), "il nono cerchio", sub_font, ACCENT)
 
     # Ícones dos serviços empilhados (linha discreta no fundo)
     icon_y = H - 80
     icon_size = 36
-    services = [
-        ("Gmail",    (234, 67, 53)),
-        ("Outlook",  (0, 120, 212)),
-        ("Slack",    (97, 31, 105)),
-        ("Teams",    (80, 89, 201)),
-        ("Meet",     (0, 137, 123)),
-        ("Chat",     (0, 172, 71)),
-        ("WhatsApp", (37, 211, 102)),
-        ("Telegram", (0, 136, 204)),
-        ("Discord",  (88, 101, 242)),
-        ("LinkedIn", (10, 102, 194)),
-        ("X",        (40, 40, 40)),
+    services_colors = [
+        (234, 67, 53), (0, 120, 212), (97, 31, 105), (80, 89, 201),
+        (0, 137, 123), (0, 172, 71), (37, 211, 102), (0, 136, 204),
+        (88, 101, 242), (10, 102, 194), (40, 40, 40),
     ]
-    total_w = len(services) * icon_size + (len(services) - 1) * 14
+    total_w = len(services_colors) * icon_size + (len(services_colors) - 1) * 14
     start_x = (W - total_w) // 2
-    for i, (_, color) in enumerate(services):
+    for i, color in enumerate(services_colors):
         x = start_x + i * (icon_size + 14)
         d.rounded_rectangle(
             (x, icon_y - icon_size // 2, x + icon_size, icon_y + icon_size // 2),
             radius=8, fill=color,
         )
 
-    # Caption sob a linha de ícones
+    # Caption (idioma) sob a linha de ícones
     caption_font = font(SF, 14)
-    text_centered(d, (W // 2, icon_y + 42),
-                  "Email · Mensageria · Reuniões · DMs — cada um na sua bolgia.",
-                  caption_font, TEXT_DIM)
+    text_centered(d, (W // 2, icon_y + 42), caption, caption_font, TEXT_DIM)
 
-    img.save(OUT / "hero.png", "PNG", optimize=True)
-    print(f"  → {OUT / 'hero.png'}  ({W}×{H})")
+    out_name = filename or (f"hero.png" if lang == "pt" else f"hero.{lang}.png")
+    img.save(OUT / out_name, "PNG", optimize=True)
+    print(f"  → {OUT / out_name}  ({W}×{H}, {lang})")
 
 
 # ─── 2. Mock da janela com sidebar (1100×680) ──────────────────────────────
@@ -293,6 +321,7 @@ def render_themes():
 
 if __name__ == "__main__":
     print("Cocito · README assets")
-    render_hero()
+    for lang in HERO_I18N.keys():
+        render_hero(lang)
     render_window_mock()
     render_themes()

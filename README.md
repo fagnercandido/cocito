@@ -2,6 +2,17 @@
 
 <img src=".github/assets/hero.png" alt="Cocito" width="100%" />
 
+<sub>
+  🇵🇹 <strong>Português</strong> ·
+  <a href="README.en.md">🇬🇧 English</a> ·
+  <a href="README.es.md">🇪🇸 Español</a> ·
+  <a href="README.it.md">🇮🇹 Italiano</a> ·
+  <a href="README.fr.md">🇫🇷 Français</a> ·
+  <a href="README.de.md">🇩🇪 Deutsch</a> ·
+  <a href="README.ru.md">🇷🇺 Русский</a> ·
+  <a href="README.la.md">🏛️ Latina</a>
+</sub>
+
 <h3><em>Hub de comunicação desktop. Local-first. Zero backend.</em></h3>
 
 <p>
