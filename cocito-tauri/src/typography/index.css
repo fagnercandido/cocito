@@ -1,0 +1,17 @@
+/* Barril das 3 stacks tipográficas. As 3 coexistem no bundle; o atributo
+   `data-typography` no <html> escolhe qual está ativa. */
+@import "./sobria.css";
+@import "./literaria.css";
+@import "./nativa.css";
+
+/* ══ Identidade fixa ══════════════════════════════════════════════════════
+   O nome da app no brand (título, hero, splash) usa SEMPRE Newsreader
+   italic, qualquer que seja a stack escolhida. Assinatura visual do Cocito.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.brand-lake {
+  font-family: "Newsreader Variable", ui-serif, Georgia, serif !important;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: italic;
+}

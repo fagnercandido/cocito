@@ -1,0 +1,25 @@
+/* ══ Tipografia · Literária ═══════════════════════════════════════════════
+   Spectral + Geist Mono + system sans fallback para General Sans.
+   General Sans vive no Fontshare (sem NPM oficial) — migrar para .woff2
+   self-hosted em Semana 2 quando refinarmos a Literária.
+   ════════════════════════════════════════════════════════════════════════ */
+
+@import "@fontsource/spectral/200.css";
+@import "@fontsource/spectral/300.css";
+@import "@fontsource/spectral/400.css";
+@import "@fontsource/spectral/500.css";
+@import "@fontsource/spectral/600.css";
+@import "@fontsource/spectral/700.css";
+@import "@fontsource/spectral/400-italic.css";
+@import "@fontsource/spectral/600-italic.css";
+@import "@fontsource/geist-mono/300.css";
+@import "@fontsource/geist-mono/400.css";
+@import "@fontsource/geist-mono/500.css";
+@import "@fontsource/geist-mono/600.css";
+@import "@fontsource/geist-mono/700.css";
+
+[data-typography="literaria"] {
+  --ff-sans: "Inter Variable", -apple-system, system-ui, sans-serif;
+  --ff-serif: "Spectral", ui-serif, Georgia, serif;
+  --ff-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}

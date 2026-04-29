@@ -1,0 +1,38 @@
+# Cocito · Homebrew Cask formula template.
+#
+# Vai para um repo separado: github.com/fagner7777777/homebrew-cocito
+# Caminho: Casks/cocito.rb
+#
+# Substituir __VERSION__ e __SHA256__ a cada release (script release.sh
+# pode automatizar via gh + sed). Depois:
+#   brew tap fagner7777777/cocito
+#   brew install --cask cocito
+
+cask "cocito" do
+  version "__VERSION__"
+  sha256 "__SHA256__"
+
+  url "https://github.com/fagner7777777/cocito/releases/download/v#{version}/Cocito_#{version}.dmg"
+  name "Cocito"
+  desc "Hub de comunicação desktop Dante-themed (email + mensageria)"
+  homepage "https://github.com/fagner7777777/cocito"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  auto_updates true   # via tauri-plugin-updater
+  depends_on macos: ">= :big_sur"
+
+  app "Cocito.app"
+
+  uninstall quit: "app.cocito.desktop"
+
+  zap trash: [
+    "~/Library/Application Support/app.cocito.desktop",
+    "~/Library/Caches/app.cocito.desktop",
+    "~/Library/Preferences/app.cocito.desktop.plist",
+    "~/Library/Saved Application State/app.cocito.desktop.savedState",
+  ]
+end

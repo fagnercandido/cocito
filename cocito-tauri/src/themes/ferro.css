@@ -1,0 +1,38 @@
+/* ══ VI · Heresia · Ferro ═════════════════════════════════════════════════
+   Brasa, ferro quente.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="ferro"] {
+  --bg: #0a0a0c;
+  --surface: #181a1e;
+  --surface-2: #28282e;
+  --text: #e8d8c8;
+  --text-dim: #988878;
+  --accent: #ff6010;
+  --border: #28282c;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #4a2010 0%, transparent 65%);
+}
+
+[data-theme="ferro"][data-mode="light"] {
+  --bg: #ede4d4;
+  --surface: #f8f0e0;
+  --surface-2: #d8c8b0;
+  --text: #1a1208;
+  --text-dim: #786850;
+  --accent: #c84810;
+  --border: #c8b890;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffba80 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="ferro"]:not([data-mode="dark"]) {
+    --bg: #ede4d4;
+    --surface: #f8f0e0;
+    --surface-2: #d8c8b0;
+    --text: #1a1208;
+    --text-dim: #786850;
+    --accent: #c84810;
+    --border: #c8b890;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffba80 0%, transparent 65%);
+  }
+}

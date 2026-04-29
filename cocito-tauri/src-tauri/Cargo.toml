@@ -1,0 +1,54 @@
+[package]
+name = "cocito"
+version = "0.3.2"
+description = "Hub de comunicação desktop Dante-themed"
+authors = ["Fagner Cândido"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "cocito_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.1", features = ["unstable", "tray-icon"] }
+tauri-plugin-fs = "2.0"
+tauri-plugin-dialog = "2.0"
+tauri-plugin-updater = "2.0"
+notify-rust = "4"
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher-vendored-openssl"] }
+keyring = "3"
+rand = "0.9"
+notify = "8"
+notify-debouncer-mini = "0.6"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dirs = "5"
+regex = "1"
+chrono = { version = "0.4", features = ["clock"] }
+mdns-sd = "0.13"
+reqwest = { version = "0.12", features = ["json", "stream"] }
+futures-util = "0.3"
+# rfd: usado no on_download em modo "ask" para abrir um Save dialog síncrono.
+# Já é dependência transitiva via tauri-plugin-dialog — declaramos explícito
+# para garantir a versão e o feature set "xdg-portal" no Linux.
+rfd = { version = "0.16", default-features = false, features = ["xdg-portal", "tokio"] }
+uuid = { version = "1", features = ["v5"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

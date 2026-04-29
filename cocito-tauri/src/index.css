@@ -1,0 +1,104 @@
+/* ══ Estilos globais do Cocito ════════════════════════════════════════════ */
+
+/* @import obrigatoriamente antes de tudo (regra CSS / PostCSS). */
+@import "./themes/index.css";
+@import "./typography/index.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══ Reset fino + defaults globais ════════════════════════════════════════ */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    caret-color: var(--accent);
+    /* Transições suaves entre temas. */
+    transition:
+      background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  body {
+    background: var(--bg);
+    background-image: var(--grad);
+    color: var(--text);
+    overflow: hidden; /* app desktop — scroll interno */
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--text);
+  }
+
+  /* Scrollbars discretos, temáticos. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dim);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+}
+
+/* ══ Utility classes reutilizáveis ════════════════════════════════════════ */
+
+@layer utilities {
+  .serif {
+    font-family: var(--ff-serif);
+  }
+  .mono {
+    font-family: var(--ff-mono);
+  }
+  .ease-out-smooth {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ── Ícones em temas light ──────────────────────────────────────────────
+   Logos como Slack/X/Discord têm partes brancas que desaparecem em fundos
+   light. Aplicamos um drop-shadow muito subtil (escuro) para dar bordas
+   visuais sem alterar as cores brand. */
+
+[data-mode="light"] .group svg.app-icon,
+[data-mode="light"] .app-icon {
+  filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-mode="dark"]) .app-icon {
+    filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "svc-webviews",
+  "description": "Capabilities mínimas para as webviews dos serviços (svc:slack, svc:gmail, …). Apenas o necessário para invocar `cmd_emit_from_webview` (custom command) — sem fs, sem shell, sem dialog, sem notifications.",
+  "windows": ["main"],
+  "webviews": ["svc:*"],
+  "permissions": [
+    "core:default"
+  ]
+}

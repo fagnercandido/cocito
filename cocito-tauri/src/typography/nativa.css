@@ -1,0 +1,12 @@
+/* ══ Tipografia · Nativa ══════════════════════════════════════════════════
+   System cascade — SF Pro / New York no Mac, Segoe UI no Windows, system
+   no Linux. Zero bundle usado; utiliza o que o SO já tem.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-typography="nativa"] {
+  --ff-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    system-ui, "Segoe UI", Roboto, sans-serif;
+  --ff-serif: ui-serif, "New York", "Iowan Old Style", "Hoefler Text",
+    Georgia, serif;
+  --ff-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}

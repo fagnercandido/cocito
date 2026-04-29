@@ -1,0 +1,38 @@
+/* ══ VIII · Fraude · Malebolge · code mode ════════════════════════════════
+   Verde ácido.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="malebolge"] {
+  --bg: #060c06;
+  --surface: #102010;
+  --surface-2: #1c321a;
+  --text: #d8ffb8;
+  --text-dim: #708868;
+  --accent: #98f018;
+  --border: #1e3018;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #1e4a18 0%, transparent 65%);
+}
+
+[data-theme="malebolge"][data-mode="light"] {
+  --bg: #e8ffd0;
+  --surface: #f5ffe4;
+  --surface-2: #c8f098;
+  --text: #0a2008;
+  --text-dim: #406030;
+  --accent: #4ea000;
+  --border: #b0d888;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #d8f8a0 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="malebolge"]:not([data-mode="dark"]) {
+    --bg: #e8ffd0;
+    --surface: #f5ffe4;
+    --surface-2: #c8f098;
+    --text: #0a2008;
+    --text-dim: #406030;
+    --accent: #4ea000;
+    --border: #b0d888;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #d8f8a0 0%, transparent 65%);
+  }
+}

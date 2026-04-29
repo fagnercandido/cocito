@@ -1,0 +1,38 @@
+/* ══ III · Gula · Autunno ═════════════════════════════════════════════════
+   Âmbar, musgo, chuva.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="autunno"] {
+  --bg: #18120a;
+  --surface: #281c0e;
+  --surface-2: #3c2a18;
+  --text: #f5d8a8;
+  --text-dim: #a89070;
+  --accent: #ee8c20;
+  --border: #3c2c1a;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #4a2e10 0%, transparent 65%);
+}
+
+[data-theme="autunno"][data-mode="light"] {
+  --bg: #f5e6c8;
+  --surface: #fff8e0;
+  --surface-2: #ead2a0;
+  --text: #2a1a08;
+  --text-dim: #8a6840;
+  --accent: #b8581e;
+  --border: #d8bc88;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffce80 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="autunno"]:not([data-mode="dark"]) {
+    --bg: #f5e6c8;
+    --surface: #fff8e0;
+    --surface-2: #ead2a0;
+    --text: #2a1a08;
+    --text-dim: #8a6840;
+    --accent: #b8581e;
+    --border: #d8bc88;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffce80 0%, transparent 65%);
+  }
+}

@@ -1,0 +1,38 @@
+/* ══ VII · Violência · Flegetonte ═════════════════════════════════════════
+   Fogo líquido.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="flegetonte"] {
+  --bg: #0a0408;
+  --surface: #220808;
+  --surface-2: #380e0c;
+  --text: #ffb898;
+  --text-dim: #b87060;
+  --accent: #ff3018;
+  --border: #381210;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #5e1808 0%, transparent 65%);
+}
+
+[data-theme="flegetonte"][data-mode="light"] {
+  --bg: #ffe8d8;
+  --surface: #fff4ec;
+  --surface-2: #ffc8a8;
+  --text: #2a0808;
+  --text-dim: #983828;
+  --accent: #d82010;
+  --border: #f8a888;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb098 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="flegetonte"]:not([data-mode="dark"]) {
+    --bg: #ffe8d8;
+    --surface: #fff4ec;
+    --surface-2: #ffc8a8;
+    --text: #2a0808;
+    --text-dim: #983828;
+    --accent: #d82010;
+    --border: #f8a888;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb098 0%, transparent 65%);
+  }
+}

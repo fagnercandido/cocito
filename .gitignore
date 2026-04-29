@@ -1,0 +1,69 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# build output
+dist/
+dist-ssr/
+*.local
+*.tsbuildinfo
+
+# Tauri
+**/src-tauri/target/
+**/src-tauri/gen/
+
+# Bundles e artefactos de release
+*.dmg
+*.msi
+*.AppImage
+*.deb
+*.rpm
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+
+# test
+coverage/
+playwright-report/
+test-results/
+
+# Claude Code / agentes locais
+.claude/
+.cursorrules
+CLAUDE.md
+CLAUDE.local.md
+
+# storage runtime (caso alguém corra release manual local)
+partitions/
+config.json
+audit.log
+backups/
+
+# python venv (build-icon, build-dmg-background)
+__pycache__/
+*.pyc
+.venv/

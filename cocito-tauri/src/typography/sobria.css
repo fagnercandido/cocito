@@ -1,0 +1,23 @@
+/* ══ Tipografia · Sóbria (default) ════════════════════════════════════════
+   Inter + Newsreader (opsz variable) + JetBrains Mono.
+   Neutra na UI, literária nos acentos, optical sizing verdadeiro.
+   Fontes servidas por @fontsource-variable/* (self-hosted, zero Google Fonts).
+   ════════════════════════════════════════════════════════════════════════ */
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/newsreader";
+@import "@fontsource-variable/newsreader/wght-italic.css";
+@import "@fontsource-variable/jetbrains-mono";
+
+[data-typography="sobria"] {
+  --ff-sans: "Inter Variable", -apple-system, system-ui, sans-serif;
+  --ff-serif: "Newsreader Variable", ui-serif, Georgia, serif;
+  --ff-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+}
+
+[data-typography="sobria"] .serif-el,
+[data-typography="sobria"] h1,
+[data-typography="sobria"] h2,
+[data-typography="sobria"] .display {
+  font-optical-sizing: auto;
+}

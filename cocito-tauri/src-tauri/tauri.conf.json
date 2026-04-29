@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Cocito",
+  "version": "0.3.2",
+  "identifier": "app.cocito.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Cocito",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 900,
+        "minHeight": 600,
+        "center": true,
+        "titleBarStyle": "Overlay",
+        "trafficLightPosition": { "x": 14, "y": 14 },
+        "hiddenTitle": true
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "img-src": "'self' asset: https://asset.localhost data: blob:",
+        "font-src": "'self' data:",
+        "style-src": "'self' 'unsafe-inline'",
+        "script-src": "'self'",
+        "connect-src": "'self' ipc: http://ipc.localhost cocito-ipc: http://localhost:* http://127.0.0.1:* http://*.local:*",
+        "frame-src": "'none'",
+        "object-src": "'none'",
+        "base-uri": "'self'",
+        "form-action": "'self'"
+      }
+    },
+    "withGlobalTauri": false
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/fagnercandido/cocito/releases/latest/download/latest.json"
+      ],
+      "pubkey": "PLACEHOLDER_PUBLIC_KEY_REPLACE_AFTER_GENERATING_WITH_TAURI_SIGNER"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["dmg", "msi", "appimage"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "entitlements": "entitlements.plist",
+      "minimumSystemVersion": "14.0",
+      "dmg": {
+        "background": "dmg/background.png",
+        "windowSize": { "width": 540, "height": 380 },
+        "appPosition": { "x": 140, "y": 200 },
+        "applicationFolderPosition": { "x": 400, "y": 200 }
+      }
+    },
+    "resources": {
+      "../src/services.json": "services.json"
+    },
+    "category": "SocialNetworking",
+    "shortDescription": "Hub de comunicação desktop Dante-themed",
+    "longDescription": "Cocito é o nono círculo — onde todas as conversas convergem. Email + mensageria num só sítio, cada serviço isolado na sua bolgia. Zero backend, local-first, AI só local.",
+    "copyright": "© 2026 Fagner Cândido"
+  }
+}

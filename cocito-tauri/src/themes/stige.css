@@ -1,0 +1,38 @@
+/* ══ V · Ira · Stige ══════════════════════════════════════════════════════
+   Vermelho profundo.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="stige"] {
+  --bg: #100408;
+  --surface: #220810;
+  --surface-2: #381018;
+  --text: #ffc8c8;
+  --text-dim: #b07878;
+  --accent: #ee2238;
+  --border: #381820;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #5a1018 0%, transparent 65%);
+}
+
+[data-theme="stige"][data-mode="light"] {
+  --bg: #ffe4e4;
+  --surface: #fff2f2;
+  --surface-2: #fcc8c8;
+  --text: #28080c;
+  --text-dim: #983040;
+  --accent: #c80020;
+  --border: #f0a8a8;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb8b8 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="stige"]:not([data-mode="dark"]) {
+    --bg: #ffe4e4;
+    --surface: #fff2f2;
+    --surface-2: #fcc8c8;
+    --text: #28080c;
+    --text-dim: #983040;
+    --accent: #c80020;
+    --border: #f0a8a8;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb8b8 0%, transparent 65%);
+  }
+}

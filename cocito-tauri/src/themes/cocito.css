@@ -1,0 +1,38 @@
+/* ══ IX · Traição · Cocito · default ══════════════════════════════════
+   Azul gelo sobre noite profunda. Tokens espelhados em mockups/themes.html.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+[data-theme="cocito"] {
+  --bg: #050a18;
+  --surface: #0e1828;
+  --surface-2: #1a2a44;
+  --text: #e8f0ff;
+  --text-dim: #6b85b0;
+  --accent: #4d9eff;
+  --border: #1e2c46;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #1e3e7a 0%, transparent 65%);
+}
+
+[data-theme="cocito"][data-mode="light"] {
+  --bg: #eef4ff;
+  --surface: #ffffff;
+  --surface-2: #dbe6f8;
+  --text: #061224;
+  --text-dim: #5a6680;
+  --accent: #0066ee;
+  --border: #c8d8ee;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #b8d0f5 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="cocito"]:not([data-mode="dark"]) {
+    --bg: #eef4ff;
+    --surface: #ffffff;
+    --surface-2: #dbe6f8;
+    --text: #061224;
+    --text-dim: #5a6680;
+    --accent: #0066ee;
+    --border: #c8d8ee;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #b8d0f5 0%, transparent 65%);
+  }
+}

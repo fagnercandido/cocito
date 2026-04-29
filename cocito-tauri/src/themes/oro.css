@@ -1,0 +1,38 @@
+/* ══ IV · Avareza · Oro ═══════════════════════════════════════════════════
+   Dourado sóbrio em noite.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="oro"] {
+  --bg: #0a0805;
+  --surface: #1c1608;
+  --surface-2: #2c2210;
+  --text: #f5dc88;
+  --text-dim: #a89058;
+  --accent: #ffc418;
+  --border: #2c2410;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #382a08 0%, transparent 65%);
+}
+
+[data-theme="oro"][data-mode="light"] {
+  --bg: #fff8d8;
+  --surface: #fffbe8;
+  --surface-2: #f0e08c;
+  --text: #2a1f08;
+  --text-dim: #8a7028;
+  --accent: #c89010;
+  --border: #e0c870;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #fde998 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="oro"]:not([data-mode="dark"]) {
+    --bg: #fff8d8;
+    --surface: #fffbe8;
+    --surface-2: #f0e08c;
+    --text: #2a1f08;
+    --text-dim: #8a7028;
+    --accent: #c89010;
+    --border: #e0c870;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #fde998 0%, transparent 65%);
+  }
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+        Hardened Runtime entitlements para distribuição fora do Mac App Store.
+        Princípio: apenas o estritamente necessário; qualquer permissão extra
+        amplia a superfície de ataque se a app for comprometida.
+
+        NOTA: Cocito intencionalmente NÃO usa App Sandbox completo
+        (com.apple.security.app-sandbox). Razão: o sandbox estrito impede
+        custom data_directory por WebView, que é a base do Malebolge
+        (isolamento de cookies por instância). Trade-off escolhido:
+        sacrificamos sandbox completo para preservar a invariante de
+        isolamento entre serviços. Hardened Runtime + entitlements mínimos
+        é o melhor compromisso possível para esta arquitetura.
+    -->
+
+    <!-- Network: cliente saída (WebViews + Beatriz/Messo). -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+
+    <!-- Server: Bonjour/mDNS para descobrir Ollama na LAN (Messo). -->
+    <key>com.apple.security.network.server</key>
+    <true/>
+
+    <!-- File access: vault Obsidian é escolhido pelo utilizador via NSOpenPanel. -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+
+    <!-- JIT: WKWebView precisa para JavaScriptCore JIT (perf das webviews). -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+
+    <!-- Unsigned executable memory: idem WKWebView. -->
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+
+    <!-- DYLD env vars: alguns plugins Tauri podem precisar (deixar até confirmar). -->
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <true/>
+
+    <!-- NÃO incluir:
+         · com.apple.security.cs.disable-library-validation (deixa carregar dylibs não-assinadas)
+         · com.apple.security.cs.allow-relative-library-loads
+         · com.apple.security.device.* (camera, microphone, location)
+         · com.apple.security.personal-information.* (contacts, calendars)
+         · com.apple.security.automation.apple-events (AppleScript controls)
+    -->
+</dict>
+</plist>

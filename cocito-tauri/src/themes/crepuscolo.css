@@ -1,0 +1,39 @@
+/* ══ I · Limbo · Crepúsculo · light-first ════════════════════════════════
+   Pergaminho, fim de tarde. A essência deste tema é o claro; o dark é
+   a adaptação noturna.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+[data-theme="crepuscolo"] {
+  --bg: #f3e6cc;
+  --surface: #fff5dc;
+  --surface-2: #e8d8ba;
+  --text: #2a1a08;
+  --text-dim: #846840;
+  --accent: #c8541e;
+  --border: #d4bf94;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffd098 0%, transparent 65%);
+}
+
+[data-theme="crepuscolo"][data-mode="dark"] {
+  --bg: #1a1208;
+  --surface: #2a1c10;
+  --surface-2: #3a2818;
+  --text: #f5dab0;
+  --text-dim: #9a805a;
+  --accent: #ff8a3a;
+  --border: #3a2c1c;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #4a2e10 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="crepuscolo"]:not([data-mode="light"]) {
+    --bg: #1a1208;
+    --surface: #2a1c10;
+    --surface-2: #3a2818;
+    --text: #f5dab0;
+    --text-dim: #9a805a;
+    --accent: #ff8a3a;
+    --border: #3a2c1c;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #4a2e10 0%, transparent 65%);
+  }
+}

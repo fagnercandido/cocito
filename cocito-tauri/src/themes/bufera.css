@@ -1,0 +1,38 @@
+/* ══ II · Luxúria · Bufera ════════════════════════════════════════════════
+   Vinho escuro, rosas sangue.
+   ════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="bufera"] {
+  --bg: #1a0612;
+  --surface: #2c0a22;
+  --surface-2: #401030;
+  --text: #ffd0d8;
+  --text-dim: #b87890;
+  --accent: #ff2a5c;
+  --border: #401e30;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #5e1838 0%, transparent 65%);
+}
+
+[data-theme="bufera"][data-mode="light"] {
+  --bg: #ffe8ee;
+  --surface: #fff5f8;
+  --surface-2: #fcd0dc;
+  --text: #2a0a18;
+  --text-dim: #9a4060;
+  --accent: #c8003a;
+  --border: #f0bcc8;
+  --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb8c8 0%, transparent 65%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="bufera"]:not([data-mode="dark"]) {
+    --bg: #ffe8ee;
+    --surface: #fff5f8;
+    --surface-2: #fcd0dc;
+    --text: #2a0a18;
+    --text-dim: #9a4060;
+    --accent: #c8003a;
+    --border: #f0bcc8;
+    --grad: radial-gradient(ellipse 70% 50% at 30% 0%, #ffb8c8 0%, transparent 65%);
+  }
+}

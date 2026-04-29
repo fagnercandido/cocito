@@ -1,0 +1,10 @@
+/* Barril dos 9 temas. Importado uma vez por main.tsx → estilos globais. */
+@import "./cocito.css";
+@import "./crepuscolo.css";
+@import "./bufera.css";
+@import "./autunno.css";
+@import "./oro.css";
+@import "./stige.css";
+@import "./ferro.css";
+@import "./flegetonte.css";
+@import "./malebolge.css";
