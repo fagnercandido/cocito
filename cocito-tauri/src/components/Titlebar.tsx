@@ -13,8 +13,10 @@
  * `onMouseDown` é o caminho oficial recomendado para drag em Tauri 2 e
  * funciona em qualquer cenário.
  *
- * Bonus: `onDoubleClick` chama `toggleMaximize()` — comportamento nativo
- * macOS (duplo-clique no título maximiza).
+ * Double-click → maximize: detectado via `e.detail === 2` no MESMO handler
+ * de `onMouseDown`. Não usamos `onDoubleClick` porque `startDragging()`
+ * captura o mouse imediatamente e o React nunca chega a receber o segundo
+ * mouseDown.
  */
 
 import { getCurrentWindow } from "@tauri-apps/api/window";
@@ -24,25 +26,25 @@ interface Props {
 }
 
 async function startDrag(e: React.MouseEvent<HTMLElement>) {
-  // Só botão esquerdo, single click — não interferir com right-click,
-  // text selection ou multi-click.
+  // Só botão esquerdo — não interferir com right-click ou middle-click.
   if (e.button !== 0) return;
   // Detecta interactive children (botões, inputs) — se o target tem o
   // atributo data-no-drag, ignora.
   const target = e.target as HTMLElement;
   if (target.closest("[data-no-drag]")) return;
+  // CRÍTICO: distinguir single vs double ANTES de chamar startDragging().
+  // `startDragging()` invoca NSWindow.performWindowDragWithEvent, que captura
+  // o mouse imediatamente e impede o React de receber o segundo mouseDown
+  // de um double-click. `e.detail === 2` é a forma standard de detectar o
+  // segundo click consecutivo.
   try {
-    await getCurrentWindow().startDragging();
+    if (e.detail === 2) {
+      await getCurrentWindow().toggleMaximize();
+    } else {
+      await getCurrentWindow().startDragging();
+    }
   } catch (err) {
-    console.warn("[Titlebar] startDragging falhou:", err);
-  }
-}
-
-async function toggleMax() {
-  try {
-    await getCurrentWindow().toggleMaximize();
-  } catch (err) {
-    console.warn("[Titlebar] toggleMaximize falhou:", err);
+    console.warn("[Titlebar] drag/maximize falhou:", err);
   }
 }
 
@@ -52,7 +54,6 @@ export function Titlebar({ subtitle }: Props) {
       className="h-10 flex items-center border-b border-border/80 flex-shrink-0 relative select-none"
       style={{ paddingLeft: 78 /* espaço para traffic lights no mac */ }}
       onMouseDown={startDrag}
-      onDoubleClick={toggleMax}
       // Mantemos também o atributo como cinto-e-suspensórios — se o handler
       // explícito falhar por alguma razão, o data-attr ainda cobre.
       data-tauri-drag-region

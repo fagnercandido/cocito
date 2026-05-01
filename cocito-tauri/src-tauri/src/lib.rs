@@ -41,6 +41,44 @@ pub fn run() {
         .setup(|app| {
             let handle = app.handle().clone();
 
+            // Menu nativo macOS — sem ele, o AppKit não restaura o key-event
+            // chain que o WKWebView precisa para `interpretKeyEvents:` processar
+            // dead keys (´+e → é). Sintoma: o primeiro acento de uma frase
+            // desaparece em qualquer input dentro das svc:* webviews.
+            #[cfg(target_os = "macos")]
+            {
+                use tauri::menu::{AboutMetadataBuilder, MenuBuilder, SubmenuBuilder};
+                let about_meta = AboutMetadataBuilder::new()
+                    .name(Some("Cocito"))
+                    .version(Some(env!("CARGO_PKG_VERSION")))
+                    .copyright(Some("© 2026 Fagner Cândido"))
+                    .build();
+                let app_menu = SubmenuBuilder::new(app, "Cocito")
+                    .about(Some(about_meta))
+                    .separator()
+                    .services()
+                    .separator()
+                    .hide()
+                    .hide_others()
+                    .show_all()
+                    .separator()
+                    .quit()
+                    .build()?;
+                let edit_menu = SubmenuBuilder::new(app, "Edit")
+                    .undo()
+                    .redo()
+                    .separator()
+                    .cut()
+                    .copy()
+                    .paste()
+                    .select_all()
+                    .build()?;
+                let menu = MenuBuilder::new(app)
+                    .items(&[&app_menu, &edit_menu])
+                    .build()?;
+                app.set_menu(menu)?;
+            }
+
             // Config do utilizador.
             let config = ConfigState::load_or_default(&handle)?;
             app.manage(config);
